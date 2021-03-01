@@ -1,6 +1,7 @@
 package com.automatedtest.sample.pages;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,14 +28,14 @@ public class SendQuotePage extends AbstractPage {
 
 	public void FillAllFields(DataTable table)
 	{
-		List<String>data = table.asList();
+		List<Map<String, String>> data = table.asMaps(String.class, String.class);
 
-		email.sendKeys(data.get(0));
-		phone.sendKeys(data.get(1));
-		userName.sendKeys(data.get(2));
-		password.sendKeys(data.get(3));
-		confirmPassword.sendKeys(data.get(4));
-		comments.sendKeys(data.get(5));
+		email.sendKeys(data.get(0).get("Email"));
+		phone.sendKeys(data.get(0).get("Phone"));
+		userName.sendKeys(data.get(0).get("Username"));
+		password.sendKeys(data.get(0).get("Password"));
+		confirmPassword.sendKeys(data.get(0).get("Confirm Password"));
+		comments.sendKeys(data.get(0).get("Comments"));
 
 	}
 

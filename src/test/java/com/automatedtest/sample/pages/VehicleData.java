@@ -15,6 +15,12 @@ public class VehicleData {
 	private String annualMileage;
 	private String fuelType;
 	
+	public String getMake() {
+		return make;
+	}
+	public void setMake(String make) {
+		this.make = make;
+	}
 	public VehicleData() {
 	
 	}

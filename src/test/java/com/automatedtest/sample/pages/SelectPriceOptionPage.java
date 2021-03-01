@@ -1,5 +1,8 @@
 package com.automatedtest.sample.pages;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.automatedtest.sample.basepage.AbstractPage;
+import io.cucumber.datatable.DataTable;
 
 public class SelectPriceOptionPage extends AbstractPage {
 	public SelectPriceOptionPage(WebDriver driver) {
@@ -17,8 +21,10 @@ public class SelectPriceOptionPage extends AbstractPage {
 	private WebElement selectPlatinum = getDriver().findElement(By.xpath("//*[@id='priceTable']/tfoot/tr/th[2]/label[3]/span"));
 	private WebElement selectUltimate = getDriver().findElement(By.xpath("//*[@id='priceTable']/tfoot/tr/th[2]/label[4]/span"));
 	
-	public void SelectPlan(String plan)
+	public void SelectPrice(DataTable table)
 	{
+		List<Map<String, String>> data = table.asMaps(String.class, String.class);
+		String plan = data.get(0).get("Price Option");
 	
 		switch (plan) {
         case "Silver":

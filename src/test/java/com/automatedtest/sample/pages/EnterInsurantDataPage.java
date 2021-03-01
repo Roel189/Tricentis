@@ -1,6 +1,7 @@
 package com.automatedtest.sample.pages;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,18 +34,19 @@ public class EnterInsurantDataPage extends AbstractPage{
 	private String hobby;
 	public void FillAllFields(DataTable table)
 	{
-		List<String>data = table.asList();
+		
+		List<Map<String, String>> data = table.asMaps(String.class, String.class);
 
-		firstName.sendKeys(data.get(0));
-		lastName.sendKeys(data.get(1));
-		dateOfBirth.sendKeys(data.get(2));
-		Gender(data.get(3));
-		streetAddress.sendKeys(data.get(4));
-	    country.sendKeys(data.get(5));
-	    zipCode.sendKeys(data.get(6));
-	    city.sendKeys(data.get(7));
-	    occupation.sendKeys(data.get(8));
-	    Hobbies(data.get(9));
+		firstName.sendKeys(data.get(0).get("First Name"));
+		lastName.sendKeys(data.get(0).get("Last Name"));
+		dateOfBirth.sendKeys(data.get(0).get("Date Of Birth"));
+		Gender(data.get(0).get("Gender"));
+		streetAddress.sendKeys(data.get(0).get("Street Address"));
+	    country.sendKeys(data.get(0).get("Country"));
+	    zipCode.sendKeys(data.get(0).get("Zip Code"));
+	    city.sendKeys(data.get(0).get("City"));
+	    occupation.sendKeys(data.get(0).get("Occupation"));
+	    Hobbies(data.get(0).get("Hobbies"));
 	    
 
 	}

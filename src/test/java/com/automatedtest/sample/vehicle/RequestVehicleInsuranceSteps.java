@@ -54,9 +54,9 @@ public class RequestVehicleInsuranceSteps   {
 		productDataPage.ClickNextButton();
 	}
 	@When("selects Price Option")
-	public void fillsSelectPriceOption(String option) {
+	public void fillsSelectPriceOption(DataTable table) {
 		selectPriceOptionPage= new SelectPriceOptionPage(driver);
-		selectPriceOptionPage.SelectPlan(option);
+		selectPriceOptionPage.SelectPrice(table);
 		selectPriceOptionPage.ClickNextButton();
 	}
 	@When("fills Send Quote")

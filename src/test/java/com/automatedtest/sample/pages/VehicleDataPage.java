@@ -17,6 +17,7 @@ import com.automatedtest.sample.basepage.BasePage;
 
 import io.cucumber.datatable.DataTable;
 
+import java.util.Map;
 
 
 
@@ -75,15 +76,18 @@ public class VehicleDataPage extends AbstractPage {
 	
 	public void FillAllFields(DataTable table)
 	{
-		List<String>data = table.asList();
-		getDriver().findElement(By.xpath("//*[@id='make']")).sendKeys(data.get(0));
-		getDriver().findElement(By.xpath("//*[@id='engineperformance']")).sendKeys(data.get(1));
-		getDriver().findElement(By.xpath("//*[@id='dateofmanufacture']")).sendKeys(data.get(2));
-	    getDriver().findElement(By.xpath("//*[@id='numberofseats']")).sendKeys(data.get(3));
-		getDriver().findElement(By.xpath("//*[@id='fuel']")).sendKeys(data.get(4));
-	    getDriver().findElement(By.xpath("//*[@id='listprice']")).sendKeys(data.get(5));
-		getDriver().findElement(By.xpath("//*[@id='licenseplatenumber']")).sendKeys(data.get(6));
-		getDriver().findElement(By.xpath("//*[@id='annualmileage']")).sendKeys(data.get(7));
+		
+		//List<String>data = table.asList();
+		List<Map<String, String>> data = table.asMaps(String.class, String.class);
+
+		getDriver().findElement(By.xpath("//*[@id='make']")).sendKeys(data.get(0).get("Make"));
+		getDriver().findElement(By.xpath("//*[@id='engineperformance']")).sendKeys(data.get(0).get("Engine"));
+		getDriver().findElement(By.xpath("//*[@id='dateofmanufacture']")).sendKeys(data.get(0).get("Manufacture Date"));
+	    getDriver().findElement(By.xpath("//*[@id='numberofseats']")).sendKeys(data.get(0).get("Seats"));
+		getDriver().findElement(By.xpath("//*[@id='fuel']")).sendKeys(data.get(0).get("Fuel Type"));
+	    getDriver().findElement(By.xpath("//*[@id='listprice']")).sendKeys(data.get(0).get("Price"));
+		getDriver().findElement(By.xpath("//*[@id='licenseplatenumber']")).sendKeys(data.get(0).get("License"));
+		getDriver().findElement(By.xpath("//*[@id='annualmileage']")).sendKeys(data.get(0).get("Annual Mileage"));
 
 	}
 

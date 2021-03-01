@@ -1,6 +1,7 @@
 package com.automatedtest.sample.pages;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,14 +26,14 @@ public class EnterProductDataPage extends AbstractPage{
 
     	public void FillAllFields(DataTable table)
     	{
-    		List<String>data = table.asList();
+    		List<Map<String, String>> data = table.asMaps(String.class, String.class);
 
-    		startDate.sendKeys(data.get(0));
-    		insuranceSum.sendKeys(data.get(1));
-    		meritRating.sendKeys(data.get(2));
-    		damageInsurance.sendKeys(data.get(3));
-    		OptionalProducts((data.get(4)));
-    	    courtesyCar.sendKeys(data.get(5));
+    		startDate.sendKeys(data.get(0).get("Start Date"));
+    		insuranceSum.sendKeys(data.get(0).get("Insurance Sum"));
+    		meritRating.sendKeys(data.get(0).get("Merit Rating"));
+    		damageInsurance.sendKeys(data.get(0).get("Damage Insurance"));
+    		OptionalProducts(data.get(0).get("Optional Products"));
+    	    courtesyCar.sendKeys(data.get(0).get("Courtesy Card"));
 
     	}
     	public void OptionalProducts(String option)
