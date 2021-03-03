@@ -21,41 +21,44 @@ import java.util.Map;
 
 
 
-public class VehicleDataPage extends AbstractPage {
+public class VehicleDataPage extends BasePage {
 	private static final String PAGE_HOME_URL = "http://sampleapp.tricentis.com/101/app.php";
     private static final By BY_SEARCH_FIELD = By.name("[kW]");
-	private WebElement automobile = getDriver().findElement(By.xpath("//*[@id='nav_automobile']"));
+	//private WebElement automobile = driver.findElement(By.xpath("//*[@id='nav_automobile']"));
     private List<VehicleData> vehicles = new ArrayList<>();
 	private VehicleData vehicle;
 
 	public VehicleDataPage(WebDriver driver) {
-        super(driver);
+        //super(driver);
     }
+	public VehicleDataPage() {
+        PageFactory.initElements(driver, this);
+    }
+	//public VehicleDataPage() {
+    //}
+	//public VehicleDataPage() {
+      //  PageFactory.initElements(getDriver(), this);
+    //}
 
     public void navigateToHomePage() {
-        getDriver().navigate().to(PAGE_HOME_URL);
+    	driver.navigate().to(PAGE_HOME_URL);
     }
-
-	
     
-	Select dropdownMake = new Select(getDriver().findElement(By.xpath("//*[@id='make']")));
+	//Select dropdownMake = new Select(getDriver().findElement(By.xpath("//*[@id='make']")));
     
 	
 	public void ClickAutomobile()
 	{
+		WebElement automobile = driver.findElement(By.xpath("//*[@id='nav_automobile']"));
 		automobile.click();
 	}
 	public void AddVehicleMakeRadomically()
 	{
-		List<WebElement> options = getDriver().findElements(By.xpath("//*[@role='menu']"));
+		List<WebElement> options = driver.findElements(By.xpath("//*[@role='menu']"));
 		options.get(getRandomNumberInBetween(1, options.size() - 1)).click();
 
 	}
-	public void enterSearchPhrase(String phrase) {
-        WebElement searchField = driverWait(10).until(ExpectedConditions.elementToBeClickable(BY_SEARCH_FIELD));
-        searchField.sendKeys(phrase);
-        searchField.submit();
-    }
+	
 	
 	public void FillEnginePerformance(String performance)
 	{
@@ -65,12 +68,12 @@ public class VehicleDataPage extends AbstractPage {
 	
 	public void AddNumberOfSeatsRandomically()
 	{
-		List<WebElement> options = getDriver().findElements(By.xpath("//*[@id='numberofseats']"));
+		List<WebElement> options = driver.findElements(By.xpath("//*[@id='numberofseats']"));
 		options.get(getRandomNumberInBetween(1, options.size() - 1)).click();
 	}
 	public void AddFuelTypeRandomically()
 	{
-		List<WebElement> options = getDriver().findElements(By.xpath("//*[@id='fuel']"));
+		List<WebElement> options = driver.findElements(By.xpath("//*[@id='fuel']"));
 		options.get(getRandomNumberInBetween(1, options.size() - 1)).click();
 	}
 	
@@ -80,20 +83,20 @@ public class VehicleDataPage extends AbstractPage {
 		//List<String>data = table.asList();
 		List<Map<String, String>> data = table.asMaps(String.class, String.class);
 
-		getDriver().findElement(By.xpath("//*[@id='make']")).sendKeys(data.get(0).get("Make"));
-		getDriver().findElement(By.xpath("//*[@id='engineperformance']")).sendKeys(data.get(0).get("Engine"));
-		getDriver().findElement(By.xpath("//*[@id='dateofmanufacture']")).sendKeys(data.get(0).get("Manufacture Date"));
-	    getDriver().findElement(By.xpath("//*[@id='numberofseats']")).sendKeys(data.get(0).get("Seats"));
-		getDriver().findElement(By.xpath("//*[@id='fuel']")).sendKeys(data.get(0).get("Fuel Type"));
-	    getDriver().findElement(By.xpath("//*[@id='listprice']")).sendKeys(data.get(0).get("Price"));
-		getDriver().findElement(By.xpath("//*[@id='licenseplatenumber']")).sendKeys(data.get(0).get("License"));
-		getDriver().findElement(By.xpath("//*[@id='annualmileage']")).sendKeys(data.get(0).get("Annual Mileage"));
+		driver.findElement(By.xpath("//*[@id='make']")).sendKeys(data.get(0).get("Make"));
+		driver.findElement(By.xpath("//*[@id='engineperformance']")).sendKeys(data.get(0).get("Engine"));
+		driver.findElement(By.xpath("//*[@id='dateofmanufacture']")).sendKeys(data.get(0).get("Manufacture Date"));
+		driver.findElement(By.xpath("//*[@id='numberofseats']")).sendKeys(data.get(0).get("Seats"));
+		driver.findElement(By.xpath("//*[@id='fuel']")).sendKeys(data.get(0).get("Fuel Type"));
+		driver.findElement(By.xpath("//*[@id='listprice']")).sendKeys(data.get(0).get("Price"));
+		driver.findElement(By.xpath("//*[@id='licenseplatenumber']")).sendKeys(data.get(0).get("License"));
+		driver.findElement(By.xpath("//*[@id='annualmileage']")).sendKeys(data.get(0).get("Annual Mileage"));
 
 	}
 
     public void ClickNextButton()
 	{
-    	WebElement nextButton = getDriver().findElement(By.xpath("//*[@id='nextenterinsurantdata'] | //*[@id='nextenterproductdata'] | //*[@id='nextselectpriceoption'] | //*[@id='nextsendquote']"));
+    	WebElement nextButton = driver.findElement(By.xpath("//*[@id='nextenterinsurantdata'] | //*[@id='nextenterproductdata'] | //*[@id='nextselectpriceoption'] | //*[@id='nextsendquote']"));
 		nextButton.click();
 	}
 	public void addVehicle(VehicleData vehicle) {

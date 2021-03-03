@@ -5,16 +5,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.automatedtest.sample.infrastructure.driver.Setup;
+import com.automatedtest.sample.infrastructure.driver.Wait;
+
 public abstract class AbstractPage {
 
     private WebDriver driver;
 
     public AbstractPage(WebDriver driver) {
-        this.driver = driver;
+        this.driver = Setup.driver;
+
     }
 
     protected WebDriver getDriver() {
-        return driver;
+        return Setup.driver;
     }
 
     protected WebDriverWait driverWait(long timeoutSeconds) {

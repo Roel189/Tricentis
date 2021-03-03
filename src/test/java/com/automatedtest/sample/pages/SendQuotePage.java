@@ -47,10 +47,10 @@ public class SendQuotePage extends AbstractPage {
 	}
 	public String ReturnMessage()
 	{
-		WebDriverWait wait = new WebDriverWait(getDriver(), 140);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("/html/body/div[4]/div[7]/div/button")));
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[4]/div[7]/div/button")));
 		WebElement message = getDriver().findElement(By.xpath("/html/body/div[4]/h2"));
-		return message.toString();
+		return message.getText();
 	}
 
 }

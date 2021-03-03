@@ -1,6 +1,9 @@
 package com.automatedtest.sample.infrastructure.driver;
 
 import io.cucumber.java.Before;
+//import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,11 +21,11 @@ public class Setup {
             browser = "chrome";
         }
         switch (browser) {
-            case "chrome":
-            	 //ChromeOptions chromeOptions = new ChromeOptions();
-                //chromeOptions.addArguments("['start-maximized']");
-        		System.setProperty("webdriver.chrome.driver", "C:\\Driver\\chromedriver.exe");
+            case "chrome":          	 
+        		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\src\\test\\resources\\driver\\chromedriver.exe");
                 driver = new ChromeDriver();
+                driver.manage().window().maximize();
+
                 break;
             case "firefox":
                 driver = new FirefoxDriver();

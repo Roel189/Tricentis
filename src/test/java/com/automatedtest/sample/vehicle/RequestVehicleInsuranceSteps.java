@@ -25,17 +25,21 @@ public class RequestVehicleInsuranceSteps   {
 	private SendQuotePage sendQuotePage;
 	private SelectPriceOptionPage selectPriceOptionPage;
     private AbstractPage searchPage;
-	private VehicleDataPage vehicleData  ;
     private WebDriver driver;
+    
+    public RequestVehicleInsuranceSteps() {
+        this.vehiclePage = new VehicleDataPage();
+    }
+    
 	@Given("^The user wants to submit a vehicle insurance request")
 	public void GivenTheUserWantsToSubmitAVehicleInsuranceRequest() throws Throwable {
-		driver = new ChromeDriver();
-		driver.get("http://sampleapp.tricentis.com/101/app.php");
+		
+		vehiclePage.navigateToHomePage();
 	}
 	@When("^The user fills the Vehicle Data Form$")
     public void WhenTheUserFillsTheVehicleData(DataTable table) throws Throwable {
 		
-		vehiclePage= new VehicleDataPage(driver);
+		//vehiclePage= new VehicleDataPage(driver);
 		this.vehiclePage.ClickAutomobile();
 		this.vehiclePage.FillAllFields(table);
 		vehiclePage.ClickNextButton();
